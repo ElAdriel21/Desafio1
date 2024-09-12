@@ -20,7 +20,7 @@ public class sGeneradorEnemigos : MonoBehaviour
     IEnumerator GenerarEnemigo()
     {
         yield return new WaitForSeconds(2);
-        tipoAtaque = Random.Range(0, 2);
+        tipoAtaque = Random.Range(0, 3);
         switch(tipoAtaque)
         {
             case 0:

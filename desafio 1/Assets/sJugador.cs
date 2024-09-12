@@ -1,74 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class sJugador : MonoBehaviour
 {
-    // Variables a configurar desde el editor
     [Header("Configuracion")]
-    [SerializeField] private float fuerzaSalto = 5f;
+    [SerializeField] float velHorizontal = 5f;
+    [SerializeField] float velVertical = 2f;
+    [SerializeField] float alturaMaxima = 2f;
+    [SerializeField] bool enSalto = false;
+    [SerializeField] bool enPiso = true;
+    [SerializeField] Vector3 startPosition, endPosition;
+    [SerializeField] int vidas = 3;
 
-    [SerializeField] float velocidad = 5f;
+    [SerializeField] sCorazon corazones;
 
-    // Variables de uso interno en el script
-    private bool puedoSaltar = true;
-    private bool saltando = false;
-
-    private float moverHorizontal;
-    private Vector2 direccion;
-
-    private int vidas = 3;
-
-    //Corazones
-    [SerializeField] sCorazon Corazon1, Corazon2, Corazon3;
-
-    // Variable para referenciar otro componente del objeto
+    private Animator animator;
     private Rigidbody2D miRigidbody2D;
-
     private SpriteRenderer spriteRenderer;
 
-    // Codigo ejecutado cuando el objeto se activa en el nivel
     private void OnEnable()
     {
+        animator = GetComponent<Animator>();
         miRigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine("MostrarCorazones");
     }
 
-    // Codigo ejecutado en cada frame del juego (Intervalo variable)
     void Update()
     {
         if (spriteRenderer.color != Color.grey)
         {
-            moverHorizontal = Input.GetAxis("Horizontal");
-            direccion = new Vector2(moverHorizontal, 0f);
+            float moveDirection = Input.GetAxis("Horizontal");
 
-            if (Input.GetKeyDown(KeyCode.Space) && puedoSaltar)
+
+            transform.position += new Vector3(moveDirection * velHorizontal * Time.deltaTime, 0, 0);
+
+            if (moveDirection != 0)
             {
-                puedoSaltar = false;
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
+
+            if (moveDirection < 0)
+            {
+                spriteRenderer.flipX = true; 
+            }
+            else if (moveDirection > 0)
+            {
+                spriteRenderer.flipX = false; 
+            }
+
+            if (Input.GetKey(KeyCode.W) && !enSalto && enPiso)
+            {
+                StartCoroutine(Jump());
             }
         }
     }
 
-    private void FixedUpdate()
+    private IEnumerator Jump()
     {
-        miRigidbody2D.AddForce(direccion * velocidad);
+        enSalto = true;
+        enPiso = false;
 
-        if (!puedoSaltar && !saltando)
+        //animator.SetBool("isJumping", true);
+
+        float elapsedTime = 0f;
+        float jumpDuration = 1f / velVertical;
+
+        startPosition = transform.position;
+        endPosition = new Vector3(transform.position.x, transform.position.y + alturaMaxima, transform.position.z);
+
+        while (elapsedTime < jumpDuration)
         {
-            miRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-            saltando = true;
+            float t = elapsedTime / jumpDuration;
+
+            float height = 4 * alturaMaxima * (t - t * t);
+            transform.position = new Vector3(transform.position.x, startPosition.y + height, transform.position.z);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        transform.position = new Vector3(transform.position.x, startPosition.y, transform.position.z);
+
+        enSalto = false;
+        enPiso = true;
+
+        //animator.SetBool("isJumping", false);
     }
 
-    // Codigo ejecutado cuando el jugador colisiona con otro objeto
+    void MoverIzquierda()
+    {
+        transform.position += Vector3.left * velHorizontal * Time.deltaTime;
+    }
+
+    void MoverDerecha()
+    {
+        transform.position += Vector3.right * velHorizontal * Time.deltaTime;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "suelo")
         {
-            puedoSaltar = true;
-            saltando = false;
+            enSalto = false;
+            enPiso = true;
+        }
+        else if (collision.gameObject.tag == "fantasma")
+        {
+            StartCoroutine(Jump());
         }
     }
 
@@ -80,25 +124,10 @@ public class sJugador : MonoBehaviour
 
     IEnumerator MostrarCorazones()
     {
-        Corazon1.Prender();
-        Corazon2.Prender();
-        Corazon3.Prender();
-        switch (vidas)
-        {
-            case 2:
-                Corazon3.PonerGris();
-                break;
-            case 1:
-                Corazon2.PonerGris();
-                break;
-            case 0:
-                Corazon1.PonerGris();
-                spriteRenderer.color = Color.grey;
-                break;
-        }
+        corazones.RestarVida();
+        corazones.Prender();
         yield return new WaitForSeconds(2);
-        Corazon1.Apagar();
-        Corazon2.Apagar();
-        Corazon3.Apagar();
+        corazones.Apagar();
     }
 }
+

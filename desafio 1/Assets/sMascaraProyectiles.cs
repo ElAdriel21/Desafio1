@@ -18,11 +18,10 @@ public class sMascaraProyectiles : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "proyectil")
+        if (collision.gameObject.tag == "fantasma")
         {
             Destroy(collision.gameObject);
             jugador.RestarVida();
-            print("TOQUÉ PROYECTIL");
         }
     }
 }

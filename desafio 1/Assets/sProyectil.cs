@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class sProyectil : MonoBehaviour
 {
-    [SerializeField] float velocidad = 5f; // Velocidad
+    [SerializeField] float velocidad = 5f;
     [SerializeField] Vector2 direccion;
     void Update()
     {
