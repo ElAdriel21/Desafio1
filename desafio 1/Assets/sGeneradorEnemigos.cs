@@ -6,6 +6,8 @@ public class sGeneradorEnemigos : MonoBehaviour
 {
     [SerializeField] GameObject proyectilSup, proyectilDer, proyectilIzq;
     private int tipoAtaque, posicionAtaque;
+
+    public bool almascosechadas = false;
     void Start()
     {
         StartCoroutine("GenerarEnemigo");
@@ -72,9 +74,6 @@ public class sGeneradorEnemigos : MonoBehaviour
                 posicionAtaque = Random.Range(0, 6);
                 switch (posicionAtaque)
                 {
-                    case 0:
-                        Instantiate(proyectilIzq, new Vector3(-11, -3), Quaternion.identity);
-                        break;
                     case 1:
                         Instantiate(proyectilIzq, new Vector3(-11, -2), Quaternion.identity);
                         break;
@@ -102,9 +101,6 @@ public class sGeneradorEnemigos : MonoBehaviour
                 posicionAtaque = Random.Range(0, 6);
                 switch (posicionAtaque)
                 {
-                    case 0:
-                        Instantiate(proyectilDer, new Vector3(11, -3), Quaternion.identity);
-                        break;
                     case 1:
                         Instantiate(proyectilDer, new Vector3(11, -2), Quaternion.identity);
                         break;
@@ -129,6 +125,9 @@ public class sGeneradorEnemigos : MonoBehaviour
                 }
                 break; 
         }
-        StartCoroutine("GenerarEnemigo");
+        if (almascosechadas == false)
+        {
+            StartCoroutine("GenerarEnemigo");
+        }
     }
 }

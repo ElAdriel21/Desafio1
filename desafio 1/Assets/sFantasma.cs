@@ -12,6 +12,8 @@ public class sFantasma : MonoBehaviour
     [SerializeField] AudioClip clip;
     [SerializeField] AudioSource audioSource;
 
+    [SerializeField] GameObject alma;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -44,6 +46,8 @@ public class sFantasma : MonoBehaviour
             spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, alpha);
             yield return null; 
         }
+
+        Instantiate(alma, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }

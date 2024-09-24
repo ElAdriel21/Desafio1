@@ -15,6 +15,10 @@ public class sJugador : MonoBehaviour
 
     [SerializeField] sCorazon corazones;
 
+    int almas = 0;
+    bool almascosechadas = false;
+    [SerializeField] sGeneradorEnemigos generadorEnemigos;
+
     private Animator animator;
     private Rigidbody2D miRigidbody2D;
     private SpriteRenderer spriteRenderer;
@@ -120,6 +124,11 @@ public class sJugador : MonoBehaviour
     {
         vidas--;
         StartCoroutine("MostrarCorazones");
+        if (vidas == 0)
+        {
+            animator.SetBool("isDead", true);
+            spriteRenderer.color = Color.grey;
+        }
     }
 
     IEnumerator MostrarCorazones()
@@ -128,6 +137,17 @@ public class sJugador : MonoBehaviour
         corazones.Prender();
         yield return new WaitForSeconds(2);
         corazones.Apagar();
+    }
+
+    public void SumarAlma()
+    {
+        almas++;
+        if (almas == 10)
+        {
+            almascosechadas = true;
+            generadorEnemigos.almascosechadas = almascosechadas;
+            animator.SetBool("chasquido", true);
+        }
     }
 }
 
