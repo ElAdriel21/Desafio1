@@ -13,6 +13,8 @@ public class sJugador : MonoBehaviour
     [SerializeField] Vector3 startPosition, endPosition;
     [SerializeField] int vidas = 3;
 
+    [SerializeField] float fuerzaSalto;
+
     [SerializeField] sCorazon corazones;
 
     int almas = 0;
@@ -33,7 +35,7 @@ public class sJugador : MonoBehaviour
 
     void Update()
     {
-        if (spriteRenderer.color != Color.grey)
+        if ((spriteRenderer.color != Color.grey) && (almas != 10))
         {
             float moveDirection = Input.GetAxis("Horizontal");
 
@@ -60,51 +62,16 @@ public class sJugador : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W) && !enSalto && enPiso)
             {
-                StartCoroutine(Jump());
+                Salto();
             }
         }
     }
 
-    private IEnumerator Jump()
+    void Salto()
     {
+        miRigidbody2D.AddForce(new Vector2(0, 1) * fuerzaSalto, ForceMode2D.Impulse);
         enSalto = true;
         enPiso = false;
-
-        //animator.SetBool("isJumping", true);
-
-        float elapsedTime = 0f;
-        float jumpDuration = 1f / velVertical;
-
-        startPosition = transform.position;
-        endPosition = new Vector3(transform.position.x, transform.position.y + alturaMaxima, transform.position.z);
-
-        while (elapsedTime < jumpDuration)
-        {
-            float t = elapsedTime / jumpDuration;
-
-            float height = 4 * alturaMaxima * (t - t * t);
-            transform.position = new Vector3(transform.position.x, startPosition.y + height, transform.position.z);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = new Vector3(transform.position.x, startPosition.y, transform.position.z);
-
-        enSalto = false;
-        enPiso = true;
-
-        //animator.SetBool("isJumping", false);
-    }
-
-    void MoverIzquierda()
-    {
-        transform.position += Vector3.left * velHorizontal * Time.deltaTime;
-    }
-
-    void MoverDerecha()
-    {
-        transform.position += Vector3.right * velHorizontal * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -116,7 +83,7 @@ public class sJugador : MonoBehaviour
         }
         else if (collision.gameObject.tag == "fantasma")
         {
-            StartCoroutine(Jump());
+            Salto();
         }
     }
 

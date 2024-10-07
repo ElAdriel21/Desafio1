@@ -9,6 +9,7 @@ TagManager:
   - proyectil
   - Erilda
   - fantasma
+  - mascaraErilda
   layers:
   - Default
   - TransparentFX

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 42784503}
   m_Layer: 0
   m_Name: MascaraProyectiles
-  m_TagString: Untagged
+  m_TagString: mascaraErilda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1462,7 +1462,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1539,6 +1539,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   vidas: 3
+  fuerzaSalto: 17
   corazones: {fileID: 106838212}
   generadorEnemigos: {fileID: 755483348}
 --- !u!212 &507287892
@@ -1668,7 +1669,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1988,9 +1989,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 653a8c14f00336e41bcb2fc2a4887359, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.152
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2760,6 +2761,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
   vidas: 3
+  fuerzaSalto: 0
   corazones: {fileID: 0}
   generadorEnemigos: {fileID: 0}
 --- !u!1 &2139358105

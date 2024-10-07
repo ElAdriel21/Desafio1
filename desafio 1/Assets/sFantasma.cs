@@ -27,11 +27,16 @@ public class sFantasma : MonoBehaviour
     {
         if (collision.gameObject.tag == "Erilda")
         {
-            audioSource.Play();
-            circleCollider.enabled = false;
-            animator.SetBool("inDestruction", true);
-            StartCoroutine(Destruction());
+            Destruir();
         }
+    }
+
+    public void Destruir()
+    {
+        audioSource.Play();
+        circleCollider.enabled = false;
+        animator.SetBool("inDestruction", true);
+        StartCoroutine(Destruction());
     }
 
     IEnumerator Destruction()

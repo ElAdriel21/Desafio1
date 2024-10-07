@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class sMascaraProyectiles : MonoBehaviour
 {
-    [SerializeField] sJugador jugador;
+    public sJugador jugador;
     void Start()
     {
         
@@ -20,7 +20,7 @@ public class sMascaraProyectiles : MonoBehaviour
     {
         if (collision.gameObject.tag == "fantasma")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<sFantasma>().Destruir();
             jugador.RestarVida();
         }
     }

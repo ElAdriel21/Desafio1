@@ -18,11 +18,18 @@ public class sFuegoAzul : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Erilda")
+        if (collision.gameObject.tag == "Erilda") 
         {
             sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
             fuego.objetoCentral = collision.gameObject.transform;
             collision.gameObject.GetComponent<sJugador>().SumarAlma();
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.tag == "mascaraErilda")
+        {
+            sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
+            fuego.objetoCentral = collision.gameObject.transform;
+            collision.gameObject.GetComponent<sMascaraProyectiles>().jugador.SumarAlma();
             Destroy(gameObject);
         }
     }
