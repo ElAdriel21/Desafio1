@@ -6,8 +6,6 @@ public class sJugador : MonoBehaviour
 {
     [Header("Configuracion")]
     [SerializeField] float velHorizontal = 5f;
-    [SerializeField] float velVertical = 2f;
-    [SerializeField] float alturaMaxima = 2f;
     [SerializeField] bool enSalto = false;
     [SerializeField] bool enPiso = true;
     [SerializeField] Vector3 startPosition, endPosition;
@@ -24,6 +22,8 @@ public class sJugador : MonoBehaviour
     private Animator animator;
     private Rigidbody2D miRigidbody2D;
     private SpriteRenderer spriteRenderer;
+
+    public sManejadorErilda manejadorErilda;
 
     private void OnEnable()
     {
@@ -95,6 +95,7 @@ public class sJugador : MonoBehaviour
         {
             animator.SetBool("isDead", true);
             spriteRenderer.color = Color.grey;
+            manejadorErilda.SetDerrota();
         }
     }
 
@@ -114,7 +115,13 @@ public class sJugador : MonoBehaviour
             almascosechadas = true;
             generadorEnemigos.almascosechadas = almascosechadas;
             animator.SetBool("chasquido", true);
+            manejadorErilda.SetDerrota();
         }
+    }
+
+    public void Autodestruccion()
+    {
+        Destroy(gameObject);
     }
 }
 

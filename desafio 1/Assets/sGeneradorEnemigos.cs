@@ -10,13 +10,20 @@ public class sGeneradorEnemigos : MonoBehaviour
     public bool almascosechadas = false;
     void Start()
     {
+    }
+
+    void Update()
+    {    
+    }
+
+    public void ComenzarGeneracion()
+    {
         StartCoroutine("GenerarEnemigo");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DetenerGeneracion()
     {
-        
+        StopAllCoroutines();
     }
 
     IEnumerator GenerarEnemigo()
