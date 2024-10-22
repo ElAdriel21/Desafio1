@@ -1222,8 +1222,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 50, y: -160}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374536330
 MonoBehaviour:
@@ -1691,6 +1691,52 @@ MonoBehaviour:
   proyectilDer: {fileID: 8996848187185545973, guid: 0d179858fdcc8f74a8b5608bc3d399d5, type: 3}
   proyectilIzq: {fileID: 2655074246726649637, guid: d96d4e1c13c008245af8b1966e1acc83, type: 3}
   almascosechadas: 0
+  limpiador: {fileID: 776695094}
+--- !u!1 &776695092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776695093}
+  - component: {fileID: 776695094}
+  m_Layer: 0
+  m_Name: LimpiadorEnemigosYAlmas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776695093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776695092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &776695094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776695092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67638b02234874849b3150550133c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementosParaBorrar: []
 --- !u!1 &780562252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,8 +1989,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 50, y: -160}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &789660846
 MonoBehaviour:
@@ -2542,8 +2588,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -160}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 50, y: -160}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134415570
 MonoBehaviour:
@@ -3364,6 +3410,7 @@ MonoBehaviour:
   prefabErilda: {fileID: 3876617581995084869, guid: 02c80b559dd02bd4b8048fef1c72b0d7, type: 3}
   generadorEnemigos: {fileID: 755483348}
   canvasMenu: {fileID: 1638377434}
+  limpiador: {fileID: 776695094}
 --- !u!4 &1511842517
 Transform:
   m_ObjectHideFlags: 0
@@ -4669,6 +4716,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 755483347}
+  - {fileID: 776695093}
   - {fileID: 1457099862}
   - {fileID: 915432411}
   - {fileID: 108863461}
