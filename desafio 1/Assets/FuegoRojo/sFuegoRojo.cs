@@ -8,8 +8,9 @@ public class sFuegoRojo : MonoBehaviour
     public float velocidadOrbita = 5f;  // Velocidad de la órbita
     public float distanciaOrbita = 3f;  // Distancia desde el objeto central
 
-    private float angulo = 0f;  
+    private float angulo = 0f;
 
+    public sLimpiador limpiador;
     void Update()
     {
         if (objetoCentral != null)

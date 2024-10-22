@@ -7,6 +7,8 @@ public class sManejadorErilda : MonoBehaviour
     [SerializeField] GameObject myErilda, prefabErilda;
     [SerializeField] sGeneradorEnemigos generadorEnemigos;
     [SerializeField] GameObject canvasMenu;
+
+    [SerializeField] sLimpiador limpiador;
     void Start()
     {
         
@@ -32,5 +34,6 @@ public class sManejadorErilda : MonoBehaviour
     {
         canvasMenu.SetActive(true);
         generadorEnemigos.DetenerGeneracion();
+        limpiador.BorrarElementos();
     }
 }

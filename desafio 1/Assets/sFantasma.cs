@@ -14,6 +14,8 @@ public class sFantasma : MonoBehaviour
 
     [SerializeField] GameObject alma;
 
+    public sLimpiador limpiador;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -52,7 +54,9 @@ public class sFantasma : MonoBehaviour
             yield return null; 
         }
 
-        Instantiate(alma, transform.position, Quaternion.identity);
+        GameObject fuego = Instantiate(alma, transform.position, Quaternion.identity);
+        fuego.GetComponent<sFuegoAzul>().limpiador = limpiador;
+        limpiador.AgregarElemento(fuego);
 
         Destroy(gameObject);
     }

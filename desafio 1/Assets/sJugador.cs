@@ -30,6 +30,10 @@ public class sJugador : MonoBehaviour
         animator = GetComponent<Animator>();
         miRigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
         StartCoroutine("MostrarCorazones");
     }
 
@@ -101,6 +105,10 @@ public class sJugador : MonoBehaviour
 
     IEnumerator MostrarCorazones()
     {
+        if (!corazones.gameObject)
+        {
+            yield return new WaitForSeconds(1);
+        }
         corazones.RestarVida();
         corazones.Prender();
         yield return new WaitForSeconds(2);

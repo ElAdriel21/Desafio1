@@ -5,6 +5,7 @@ using UnityEngine;
 public class sFuegoAzul : MonoBehaviour
 {
     [SerializeField] sFuegoRojo fuegoRojo;
+    public sLimpiador limpiador;
     void Start()
     {
         
@@ -22,6 +23,7 @@ public class sFuegoAzul : MonoBehaviour
         {
             sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
             fuego.objetoCentral = collision.gameObject.transform;
+            limpiador.AgregarElemento(fuego.gameObject);
             collision.gameObject.GetComponent<sJugador>().SumarAlma();
             Destroy(gameObject);
         }
@@ -29,6 +31,7 @@ public class sFuegoAzul : MonoBehaviour
         {
             sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
             fuego.objetoCentral = collision.gameObject.transform;
+            limpiador.AgregarElemento(fuego.gameObject);
             collision.gameObject.GetComponent<sMascaraProyectiles>().jugador.SumarAlma();
             Destroy(gameObject);
         }
