@@ -9,6 +9,8 @@ public class sManejadorErilda : MonoBehaviour
     [SerializeField] GameObject canvasMenu;
 
     [SerializeField] sLimpiador limpiador;
+
+    [SerializeField] sMaceta maceta;
     void Start()
     {
         
@@ -28,6 +30,13 @@ public class sManejadorErilda : MonoBehaviour
         }
         myErilda = Instantiate(prefabErilda, new Vector3(0, -2, 0), Quaternion.identity);
         myErilda.GetComponent<sJugador>().manejadorErilda = this;
+        myErilda.GetComponent<sJugador>().generadorEnemigos = generadorEnemigos;
+        myErilda.GetComponent<sJugador>().actionGrow.AddListener(() => ListenerMaceta());
+    }
+
+    void ListenerMaceta()
+    {
+        maceta.Grow();
     }
 
     public void SetDerrota()

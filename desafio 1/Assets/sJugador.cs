@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class sJugador : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class sJugador : MonoBehaviour
 
     int almas = 0;
     bool almascosechadas = false;
-    [SerializeField] sGeneradorEnemigos generadorEnemigos;
+    public sGeneradorEnemigos generadorEnemigos;
 
     private Animator animator;
     private Rigidbody2D miRigidbody2D;
@@ -25,6 +26,7 @@ public class sJugador : MonoBehaviour
 
     public sManejadorErilda manejadorErilda;
 
+    public UnityEvent actionGrow;
     private void OnEnable()
     {
         animator = GetComponent<Animator>();
@@ -118,12 +120,13 @@ public class sJugador : MonoBehaviour
     public void SumarAlma()
     {
         almas++;
-        if (almas == 10)
+        if (almas == 5)
         {
-            almascosechadas = true;
-            generadorEnemigos.almascosechadas = almascosechadas;
-            animator.SetBool("chasquido", true);
-            manejadorErilda.SetDerrota();
+            //almascosechadas = true;
+            //generadorEnemigos.almascosechadas = almascosechadas;
+            //animator.SetBool("chasquido", true);
+            animator.Play("chasquido");
+            actionGrow.Invoke();
         }
     }
 
