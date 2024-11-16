@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class sFantasma : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    Vector2 direccion;
+
+    public float velocidadHorizontal;
+
+    [SerializeField] SpriteRenderer spriteRenderer;
     public float duracionDesaparacion = 1f;
     Animator animator;
-    CircleCollider2D circleCollider;
+    [SerializeField] CircleCollider2D circleCollider;
 
     [SerializeField] AudioClip clip;
     [SerializeField] AudioSource audioSource;
@@ -18,30 +22,33 @@ public class sFantasma : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+    }
+
+    public void Inicializar()
+    {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        circleCollider = GetComponent<CircleCollider2D>();
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = clip;
+        //audioSource = GetComponent<AudioSource>();
+        //audioSource.clip = clip;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Erilda")
         {
-            Destruir();
+            Reiniciar();
         }
     }
 
-    public void Destruir()
+    public void Reiniciar()
     {
-        audioSource.Play();
+        //audioSource.Play();
         circleCollider.enabled = false;
-        animator.SetBool("inDestruction", true);
-        StartCoroutine(Destruction());
+        //animator.SetBool("inDestruction", true);
+        StartCoroutine(Esfumar());
     }
 
-    IEnumerator Destruction()
+    IEnumerator Esfumar()
     {
         float elapsedTime = 0f;
         Color spriteColor = spriteRenderer.color;
@@ -57,7 +64,20 @@ public class sFantasma : MonoBehaviour
         GameObject fuego = Instantiate(alma, transform.position, Quaternion.identity);
         fuego.GetComponent<sFuegoAzul>().limpiador = limpiador;
         limpiador.AgregarElemento(fuego);
+    }
 
-        Destroy(gameObject);
+    public void SetSprite(bool flipX)
+    {
+        spriteRenderer.flipX = flipX;
+    }
+
+    public Vector2 GetDirection()
+    {
+        return direccion;
+    }
+
+    public void SetDirection(Vector2 v2)
+    {
+        direccion = v2;
     }
 }

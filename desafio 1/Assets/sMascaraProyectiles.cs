@@ -20,7 +20,7 @@ public class sMascaraProyectiles : MonoBehaviour
     {
         if (collision.gameObject.tag == "fantasma")
         {
-            collision.gameObject.GetComponent<sFantasma>().Destruir();
+            collision.gameObject.GetComponent<sFantasma>().Reiniciar();
             jugador.RestarVida();
         }
     }
