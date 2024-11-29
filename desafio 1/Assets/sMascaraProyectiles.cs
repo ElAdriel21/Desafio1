@@ -18,7 +18,7 @@ public class sMascaraProyectiles : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "fantasma")
+        if ((collision.gameObject.tag == "fantasma") || (collision.gameObject.tag == "narizon"))
         {
             collision.gameObject.GetComponent<sFantasma>().Reiniciar();
             jugador.RestarVida();

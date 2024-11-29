@@ -1,38 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class sBruja : sFantasma
 {
-    // Start is called before the first frame update
+    bool disparando = false;
+    Animator animator;
+    [SerializeField] GameObject proyectil;
+
+    [SerializeField] Transform Erilda;
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position.y > 3.5)
+        {
+            transform.Translate(Vector2.down * this.velocidadHorizontal * Time.deltaTime);
+        }
+        else
+        {
+            animator.Play("disparando");
+            if (!disparando)
+            {
+                disparando = true;
+                StartCoroutine("Disparar");
+            }
+        }
     }
 
     public void Invocar()
     {
-        int posicionInicial = Random.Range(0, 2);
+        disparando = false;
+        transform.position = new Vector3(0, 10, 0);
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+    }
 
-        switch (posicionInicial)
-        {
-            case 0:
-                base.SetSprite(false);
-                transform.position = new Vector3(-10, -2.2f, 10);
-                base.SetDirection(Vector2.right);
-                break;
+    IEnumerator Disparar()
+    {
+        yield return new WaitForSeconds(1);
 
-            case 1:
-                base.SetSprite(true);
-                transform.position = new Vector3(10, -2.2f, 10);
-                base.SetDirection(Vector2.left);
-                break;
-        }
+        GameObject nuevoProyectil = Instantiate(proyectil, transform.position + new Vector3(-0.5f,0.5f,0),Quaternion.identity);
+        nuevoProyectil.GetComponent<sProyectil>().target = Erilda.transform.position;
+
+        nuevoProyectil = Instantiate(proyectil, transform.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+        nuevoProyectil.GetComponent<sProyectil>().target = Erilda.transform.position;
+
+        yield return new WaitForSeconds(1);
+
+        animator.Play("volando");
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        base.Reiniciar();
     }
 }

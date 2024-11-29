@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velHorizontal: 7
-  velVertical: 1.5
-  alturaMaxima: 3
   enSalto: 0
   enPiso: 1
   startPosition: {x: 0, y: 0, z: 0}
@@ -114,6 +112,10 @@ MonoBehaviour:
   fuerzaSalto: 17
   corazones: {fileID: 7639355799586263174}
   generadorEnemigos: {fileID: 0}
+  manejadorErilda: {fileID: 0}
+  actionGrow:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &206375242459947302
 BoxCollider2D:
   m_ObjectHideFlags: 0

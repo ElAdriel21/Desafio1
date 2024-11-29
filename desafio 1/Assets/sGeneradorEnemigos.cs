@@ -22,7 +22,7 @@ public class sGeneradorEnemigos : MonoBehaviour
 
     public void ComenzarGeneracion()
     {
-        StartCoroutine("GenerarEnemigo");
+        //StartCoroutine("GenerarEnemigo");
     }
 
     public void DetenerGeneracion()

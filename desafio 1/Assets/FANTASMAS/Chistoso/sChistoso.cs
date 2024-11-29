@@ -15,27 +15,43 @@ public class sChistoso : sFantasma
     {
         if (base.GetDirection() != Vector2.zero)
         {
-            transform.Translate(base.GetDirection() * this.velocidadHorizontal * Time.deltaTime);
+            transform.Translate((base.GetDirection() + Vector2.up) * this.velocidadHorizontal * Time.deltaTime);
         }
     }
 
     public void Invocar()
     {
-        int posicionInicial = Random.Range(0, 2);
+        int posicionInicial = Random.Range(-15, 16);
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
-        switch (posicionInicial)
+        transform.position = new Vector3(posicionInicial, -9, -1);
+        if (posicionInicial >= 0)
         {
-            case 0:
-                base.SetSprite(false);
-                transform.position = new Vector3(-10, -2.2f, 10);
-                base.SetDirection(Vector2.right);
-                break;
+            base.SetSprite(true);
+            base.SetDirection(Vector2.left);
+        }
+        else
+        {
+            base.SetSprite(false);
+            base.SetDirection(Vector2.right);
+        }
+    }
 
-            case 1:
-                base.SetSprite(true);
-                transform.position = new Vector3(10, -2.2f, 10);
-                base.SetDirection(Vector2.left);
-                break;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Erilda")
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.Reiniciar();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "mascaraErilda")
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.Reiniciar();
         }
     }
 }

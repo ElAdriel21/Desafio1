@@ -22,7 +22,7 @@ public class sManejadorErilda : MonoBehaviour
         
     }
 
-    public void InstanciarErilda()
+    public void InstanciarErilda() //Llamada al clickear el botón JUGAR
     {
         if (myErilda != null)
         {
@@ -34,7 +34,7 @@ public class sManejadorErilda : MonoBehaviour
         myErilda.GetComponent<sJugador>().actionGrow.AddListener(() => ListenerMaceta());
     }
 
-    void ListenerMaceta()
+    public void ListenerMaceta()
     {
         maceta.Grow();
     }

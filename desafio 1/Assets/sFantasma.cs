@@ -10,7 +10,7 @@ public class sFantasma : MonoBehaviour
 
     [SerializeField] SpriteRenderer spriteRenderer;
     public float duracionDesaparacion = 1f;
-    Animator animator;
+
     [SerializeField] CircleCollider2D circleCollider;
 
     [SerializeField] AudioClip clip;
@@ -20,30 +20,17 @@ public class sFantasma : MonoBehaviour
 
     public sLimpiador limpiador;
 
-    void Start()
-    {
-        Inicializar();
-    }
+    Color original; //color original
 
     public void Inicializar()
     {
-        animator = GetComponent<Animator>();
         //audioSource = GetComponent<AudioSource>();
         //audioSource.clip = clip;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Erilda")
-        {
-            Reiniciar();
-        }
     }
 
     public void Reiniciar()
     {
         //audioSource.Play();
-        circleCollider.enabled = false;
         //animator.SetBool("inDestruction", true);
         StartCoroutine(Esfumar());
     }
@@ -52,6 +39,7 @@ public class sFantasma : MonoBehaviour
     {
         float elapsedTime = 0f;
         Color spriteColor = spriteRenderer.color;
+        original = spriteColor;
 
         while (elapsedTime < duracionDesaparacion)
         {
@@ -61,9 +49,16 @@ public class sFantasma : MonoBehaviour
             yield return null; 
         }
 
-        GameObject fuego = Instantiate(alma, transform.position, Quaternion.identity);
-        fuego.GetComponent<sFuegoAzul>().limpiador = limpiador;
-        limpiador.AgregarElemento(fuego);
+        spriteRenderer.color = original;
+
+        if (alma)
+        {
+            GameObject fuego = Instantiate(alma, transform.position, Quaternion.identity);
+            fuego.GetComponent<sFuegoAzul>().limpiador = limpiador;
+            limpiador.AgregarElemento(fuego);
+        }
+
+        gameObject.SetActive(false);
     }
 
     public void SetSprite(bool flipX)

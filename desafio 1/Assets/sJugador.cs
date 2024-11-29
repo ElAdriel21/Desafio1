@@ -87,9 +87,14 @@ public class sJugador : MonoBehaviour
             enSalto = false;
             enPiso = true;
         }
-        else if (collision.gameObject.tag == "fantasma")
+        else if ((collision.gameObject.tag == "fantasma") || (collision.gameObject.tag == "narizon"))
         {
             Salto();
+        }
+
+        if (collision.gameObject.tag == "maceta")
+        {
+            print("XD");
         }
     }
 

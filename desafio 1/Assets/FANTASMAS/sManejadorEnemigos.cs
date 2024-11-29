@@ -33,26 +33,38 @@ public class sManejadorEnemigos : MonoBehaviour
         yield return new WaitForSeconds(5);
         int tipoFantasma = Random.Range(0, 4);
 
-        switch (tipoFantasma)
+        switch (3)
         {
             case 0:
-                narizon.gameObject.SetActive(true);
-                narizon.Invocar();
+                if (!narizon.gameObject.activeSelf)
+                {
+                    narizon.gameObject.SetActive(true);
+                    narizon.Invocar();
+                }
                 break;
 
             case 1:
-                waton.gameObject.SetActive(true);
-                waton.Invocar();
+                if (!waton.gameObject.activeSelf)
+                {
+                    waton.gameObject.SetActive(true);
+                    waton.Invocar();
+                }
                 break;
 
             case 2:
-                chistoso.gameObject.SetActive(true);
-                chistoso.Invocar();
+                if (!chistoso.gameObject.activeSelf)
+                {
+                    chistoso.gameObject.SetActive(true);
+                    chistoso.Invocar();
+                }
                 break;
 
             case 3:
-                bruja.gameObject.SetActive(true);
-                bruja.Invocar();
+                if (!bruja.gameObject.activeSelf)
+                {
+                    bruja.gameObject.SetActive(true);
+                    bruja.Invocar();
+                }
                 break;
         }
 
