@@ -14,6 +14,8 @@ public class sMaceta : MonoBehaviour
     [SerializeField] GameObject fantasmaTarget;
 
     int indexGrow = 0;
+
+    [SerializeField] sManejadorErilda manejadorErilda;
     void Start()
     {
         posicionInicial = transform.position;
@@ -31,12 +33,23 @@ public class sMaceta : MonoBehaviour
 
     public void Grow()
     {
-        print("XD");
         indexGrow++;
-        if (indexGrow < 9)
+        if (indexGrow < 10)
         {
             spriteRenderer.sprite = sprites[indexGrow];
         }
+        else
+        {
+            manejadorErilda.Ganar();
+        }
+    }
+
+    public void Reiniciar()
+    {
+        indexGrow = 0;
+        posicionInicial = transform.position;
+        listaParaVolver = false;
+        spriteRenderer.sprite = sprites[indexGrow];
     }
 
     public void SeguirFantasma(GameObject fantasma)

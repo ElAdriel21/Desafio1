@@ -16,17 +16,18 @@ public class sJugador : MonoBehaviour
 
     [SerializeField] sCorazon corazones;
 
-    int almas = 0;
-    bool almascosechadas = false;
-    public sGeneradorEnemigos generadorEnemigos;
+    public int almas = 0;
 
-    private Animator animator;
+    public Animator animator;
     private Rigidbody2D miRigidbody2D;
     private SpriteRenderer spriteRenderer;
 
     public sManejadorErilda manejadorErilda;
 
     public UnityEvent actionGrow;
+
+    public List<GameObject> almasRojas;
+
     private void OnEnable()
     {
         animator = GetComponent<Animator>();
@@ -36,7 +37,7 @@ public class sJugador : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("MostrarCorazones");
+        startPosition = transform.position;
     }
 
     void Update()
@@ -71,6 +72,29 @@ public class sJugador : MonoBehaviour
                 Salto();
             }
         }
+    }
+
+    public void AgregarAlmaRoja(GameObject nuevaAlma)
+    {
+        almasRojas.Add(nuevaAlma);
+    }
+
+    public void Reiniciar()
+    {
+        enSalto = false;
+        enPiso = true;
+        almas = 0;
+        vidas = 3;
+        transform.position = startPosition;
+        spriteRenderer.color = Color.white;
+        miRigidbody2D.simulated = true;
+        spriteRenderer.enabled = true;
+        corazones.SetFullVida();
+
+        animator.Play("Erilda_quieta");
+        animator.SetBool("isMoving", false);
+        animator.SetBool("isDead", false);
+        animator.SetBool("chasquido", false);
     }
 
     void Salto()
@@ -125,13 +149,16 @@ public class sJugador : MonoBehaviour
     public void SumarAlma()
     {
         almas++;
-        if (almas == 5)
+        if (almas == 1)
         {
-            //almascosechadas = true;
-            //generadorEnemigos.almascosechadas = almascosechadas;
-            //animator.SetBool("chasquido", true);
-            animator.Play("chasquido");
+            almas = 0;
             actionGrow.Invoke();
+
+            foreach (var item in almasRojas)
+            {
+                item.gameObject.GetComponent<sFuegoRojo>().ToPlant();
+            }
+            almasRojas.Clear();
         }
     }
 

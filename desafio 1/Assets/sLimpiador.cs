@@ -5,7 +5,6 @@ using UnityEngine;
 public class sLimpiador : MonoBehaviour
 {
     public List<GameObject> elementosParaBorrar;
-    int indice;
 
     public void AgregarElemento(GameObject newElemento)
     {

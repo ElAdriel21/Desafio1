@@ -46,6 +46,7 @@ public class sWaton : sFantasma
         if (collision.gameObject.tag == "Erilda")
         {
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.sumarStats.Invoke();
             base.Reiniciar();
         }
     }
@@ -55,6 +56,7 @@ public class sWaton : sFantasma
         if (collision.gameObject.tag == "mascaraErilda")
         {
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.sumarStats.Invoke();
             base.Reiniciar();
         }
     }

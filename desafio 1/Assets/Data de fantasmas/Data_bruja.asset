@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dd728e478072004c9baf5772e8aa8b9, type: 3}
-  m_Name: DataFantasma_1
+  m_Name: Data_bruja
   m_EditorClassIdentifier: 
-  tipo: "Tipo: com\xFAn"
-  dificultad: 'Dificultad: baja'
-  almas: 'Almas: 1'
+  tipo: bruja
+  dificultad: media alta
+  almas: 2

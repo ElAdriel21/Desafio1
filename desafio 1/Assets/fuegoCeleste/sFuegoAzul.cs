@@ -6,6 +6,9 @@ public class sFuegoAzul : MonoBehaviour
 {
     [SerializeField] sFuegoRojo fuegoRojo;
     public sLimpiador limpiador;
+
+    public GameObject plant;
+    public sJugador Erilda;
     void Start()
     {
         
@@ -23,6 +26,8 @@ public class sFuegoAzul : MonoBehaviour
         {
             sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
             fuego.objetoCentral = collision.gameObject.transform;
+            fuego.plant = plant;
+            Erilda.AgregarAlmaRoja(fuego.gameObject);
             limpiador.AgregarElemento(fuego.gameObject);
             collision.gameObject.GetComponent<sJugador>().SumarAlma();
             Destroy(gameObject);
@@ -31,6 +36,8 @@ public class sFuegoAzul : MonoBehaviour
         {
             sFuegoRojo fuego = Instantiate(fuegoRojo, transform.position, Quaternion.identity);
             fuego.objetoCentral = collision.gameObject.transform;
+            fuego.plant = plant;
+            Erilda.AgregarAlmaRoja(fuego.gameObject);
             limpiador.AgregarElemento(fuego.gameObject);
             collision.gameObject.GetComponent<sMascaraProyectiles>().jugador.SumarAlma();
             Destroy(gameObject);

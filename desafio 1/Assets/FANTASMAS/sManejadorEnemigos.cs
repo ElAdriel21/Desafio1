@@ -10,7 +10,7 @@ public class sManejadorEnemigos : MonoBehaviour
     [SerializeField] sBruja bruja;
     void Start()
     {
-        ComenzarGeneracion();
+
     }
 
     void Update()
@@ -30,10 +30,10 @@ public class sManejadorEnemigos : MonoBehaviour
 
     IEnumerator SeleccionarFantasma()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         int tipoFantasma = Random.Range(0, 4);
 
-        switch (3)
+        switch (tipoFantasma)
         {
             case 0:
                 if (!narizon.gameObject.activeSelf)

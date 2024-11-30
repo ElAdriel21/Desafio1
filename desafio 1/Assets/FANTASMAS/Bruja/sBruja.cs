@@ -9,7 +9,7 @@ public class sBruja : sFantasma
     Animator animator;
     [SerializeField] GameObject proyectil;
 
-    [SerializeField] Transform Erilda;
+    [SerializeField] Transform transformErilda;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,10 +43,10 @@ public class sBruja : sFantasma
         yield return new WaitForSeconds(1);
 
         GameObject nuevoProyectil = Instantiate(proyectil, transform.position + new Vector3(-0.5f,0.5f,0),Quaternion.identity);
-        nuevoProyectil.GetComponent<sProyectil>().target = Erilda.transform.position;
+        nuevoProyectil.GetComponent<sProyectil>().target = transformErilda.transform.position;
 
         nuevoProyectil = Instantiate(proyectil, transform.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-        nuevoProyectil.GetComponent<sProyectil>().target = Erilda.transform.position;
+        nuevoProyectil.GetComponent<sProyectil>().target = transformErilda.transform.position;
 
         yield return new WaitForSeconds(1);
 

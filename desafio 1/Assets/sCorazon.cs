@@ -11,12 +11,8 @@ public class sCorazon : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    void Start()
-    {
-        SetFullVida();
-    }
 
-    void SetFullVida()
+    public void SetFullVida()
     {
         vida = 3;
         spriteRenderer.sprite = corazones_3;

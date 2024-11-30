@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class sFantasma : MonoBehaviour
 {
+    [SerializeField] GameObject plant;
+
     Vector2 direccion;
 
     public float velocidadHorizontal;
@@ -19,8 +22,11 @@ public class sFantasma : MonoBehaviour
     [SerializeField] GameObject alma;
 
     public sLimpiador limpiador;
+    [SerializeField] sJugador Erilda;
 
     Color original; //color original
+
+    public UnityEvent sumarStats; //SUMA estadisticas de fantasma desterrado
 
     public void Inicializar()
     {
@@ -55,6 +61,8 @@ public class sFantasma : MonoBehaviour
         {
             GameObject fuego = Instantiate(alma, transform.position, Quaternion.identity);
             fuego.GetComponent<sFuegoAzul>().limpiador = limpiador;
+            fuego.GetComponent<sFuegoAzul>().plant = plant;
+            fuego.GetComponent<sFuegoAzul>().Erilda = Erilda;
             limpiador.AgregarElemento(fuego);
         }
 

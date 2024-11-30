@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class sChistoso : sFantasma
 {
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -42,6 +42,7 @@ public class sChistoso : sFantasma
         if (collision.gameObject.tag == "Erilda")
         {
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.sumarStats.Invoke();
             base.Reiniciar();
         }
     }
@@ -51,6 +52,7 @@ public class sChistoso : sFantasma
         if (collision.gameObject.tag == "mascaraErilda")
         {
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            base.sumarStats.Invoke();
             base.Reiniciar();
         }
     }

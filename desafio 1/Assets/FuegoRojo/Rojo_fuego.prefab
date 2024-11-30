@@ -122,3 +122,7 @@ MonoBehaviour:
   objetoCentral: {fileID: 0}
   velocidadOrbita: 3
   distanciaOrbita: 2
+  isGoingToPlant: 0
+  limpiador: {fileID: 0}
+  plant: {fileID: 0}
+  velocidad: 4

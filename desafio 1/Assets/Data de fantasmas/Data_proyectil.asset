@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dd728e478072004c9baf5772e8aa8b9, type: 3}
-  m_Name: DataFantasma_2
+  m_Name: Data_proyectil
   m_EditorClassIdentifier: 
-  tipo: "Tipo: com\xFAn"
-  dificultad: 'Dificultad: media baja'
-  almas: 'Almas: 1'
+  tipo: proyectil
+  dificultad: media
+  almas: 0
